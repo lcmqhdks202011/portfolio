@@ -1,0 +1,51 @@
+#btn0,
+#btn1,
+#btn2,
+#btn_ouiNon,
+#btn_consigne,
+#btn_quisuisje { display: none; }
+
+td {width:20%}
+#faits,
+#consultation,
+#jeux,
+#jeu_ouiNon,
+#jeu_consigne,
+#jeu_quisuisje { display: none; margin-top: 20px; }
+
+#btn0:checked ~ #faits,
+#btn1:checked ~ #consultation,
+#btn2:checked ~ #jeux { display: block; }
+
+#btn0:checked ~ #label0,
+#btn1:checked ~ #label1,
+#btn2:checked ~ #label2 {
+	color: white;
+	background-color: #0d6efd;
+	border-color: #0d6efd;
+}
+
+#btn_ouiNon:checked ~ #jeu_ouiNon,
+#btn_consigne:checked ~ #jeu_consigne,
+#btn_quisuisje:checked ~ #jeu_quisuisje { display: block; }
+
+#btn_ouiNon:checked ~ #label_jeu0,
+#btn_consigne:checked ~ #label_jeu1,
+#btn_quisuisje:checked ~ #label_jeu2 {
+	color: white;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+input + label {	width: 132px; }
+
+#resultatsConsultation { margin: 20px auto; }
+#prevBtn, #nextBtn { display: none; }
+
+#unePartieOuiNon { display: none; }
+
+#tableConsulter tbody tr:hover { background-color: rgb(13 110 253 / 52%); cursor: pointer; }
+#tableConsulter tbody tr:active { background-color: rgb(13 110 253 / 100%); cursor: pointer; }
+#div_consigne_answer_part { display: none; }
+.consigne_answer_list { margin-bottom: 5px; }
+#qsj_answer { display: none; }

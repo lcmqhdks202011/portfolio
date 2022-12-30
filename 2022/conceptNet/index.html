@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ConceptNet - Consultation et Jeux</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="jumbotron text-center">
+		<h1>ConceptNet</h1>
+		<p>Consultation de graphe de connaissance ConceptNet et interface de jeux manipulant les concepts de ConceptNet</p>
+	</div>
+
+	<div class="container p-4 border rounded">
+		<input type="radio" name="tabs" id="btn0" checked>
+		<label for="btn0" class="btn btn-outline-primary" id="label0">Faits</label>
+
+		<input type="radio" name="tabs" id="btn1">
+		<label for="btn1" class="btn btn-outline-primary" id="label1">Consultation</label>
+
+		<input type="radio" name="tabs" id="btn2">
+		<label for="btn2" class="btn btn-outline-primary" id="label2">Jeux</label>
+
+		<div id="faits">
+		</div>
+
+		<div id="consultation">
+			<div class="d-flex flex-row">
+				<input class="form-control mr-sm-2" type="search" placeholder="Entrer une requête..." id="barreConsulter">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnConsulter">Consulter</button>
+			</div>
+
+			<div>
+				<p><br>Entrées valides :</p>
+				<ul>
+					<li><b>/c/fr/pomme</b> ou <b>/c/en/apple</b> pour consulter un concept en fr ou en. Remplacer 'pomme' et 'apple' par votre concept.</li>
+					<li><b>/r/UsedFor</b> pour consulter une liste des faits spécifiques à la relation voulue. Remplacer 'UsedFor' par la relation voulue.</li>
+					<li><b>/c/en/apple & /r/UsedFor</b> pour consulter un concept avec une relation spécifique.</li>
+				</ul>
+				<p>Note : Il est possible d'ajouter un résultat dans la liste de faits en cliquant sur le résultat. Cela alimentera les données pour les jeux.</p>
+			</div>
+
+			<div id="prevNextBtn">
+				<button class="btn btn-secondary my-2" id="prevBtn">Prev</button>
+				<button class="btn btn-secondary my-2" id="nextBtn">Next</button>
+			</div>
+
+			<p id="nombreResultat"></p>
+
+			<div id="resultatsConsultation"></div>
+		</div>
+
+		<div id="jeux">
+
+			<p>Choisissez un jeu :</p>
+
+			<input type="radio" name="btns_jeux" id="btn_ouiNon">
+			<label for="btn_ouiNon" class="btn btn-outline-secondary" id="label_jeu0">Oui-Non</label>
+
+			<input type="radio" name="btns_jeux" id="btn_consigne">
+			<label for="btn_consigne" class="btn btn-outline-secondary" id="label_jeu1">Consigne</label>
+
+			<input type="radio" name="btns_jeux" id="btn_quisuisje">
+			<label for="btn_quisuisje" class="btn btn-outline-secondary" id="label_jeu2">Qui suis-je ?</label>
+
+			<div id="jeu_ouiNon">
+				<p>Rèlges du jeu : Une énoncé est présentée et le but du jeu est de dire si elle est vraie ou fasse en cliquant sur les boutons "Oui" ou "Non". Il faut répondre avant la fin du chrono.</p>
+
+				<button class="btn btn-info m-1 mb-4 py-1" id="btnLancerOuiNon">Lancer une partie</button>
+
+				<div id="unePartieOuiNon">
+					<p id="div_ouinon_timer"></p>
+
+					<p id="laQuestionOuiNon"></p>
+
+					<button class="btn btn-success m-1 py-1" id="btnOui">Oui</button>
+					<button class="btn btn-danger m-1 py-1" id="btnNon">Non</button>
+
+					<p id="resultatOuiNon" class="mt-2"></p>					
+				</div>
+			</div>
+
+
+			<div id="jeu_consigne">
+				<p>Rèlges du jeu : Une consigne est présentée au joueur et il doit donner des réponses qui correspond à la consigne. Par exemple, une consine serait de donner des synonymes d'un concept. Il doit alors lister le plus de concept possibles dans un temps limité pour essayer d'avoir le plus de points.</p>
+
+				<button class="btn btn-info m-1 mb-4 py-1" id="btnConsigne">Lancer une partie</button>
+
+				<div id="unePartieConsigne">
+					<p id="div_consigne_timer"></p>
+					<div class="my-3" id="div_consigne_enonce"></div>
+					<div id="div_consigne_answer_part">
+						<div class="d-flex flex-row">
+							<input type="text" class="form-control" id="consigne_text">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn_consigne_add">Soumettre</button>
+						</div>
+					</div>
+					<table class="my-3" id="consigne_answers"></table>
+					<p id="resultatConsigne" class="mt-2"></p>		
+				</div>
+
+			</div>
+
+
+			<div id="jeu_quisuisje">
+				<p>Rèlges du jeu : Le joueur doit réussir à identifier un concept dans un temps le plus court pour obtenir le plus de points. Plusieurs indices seront donnés au cours de la partie et moins il y au d'indices données, plus le score est haut.</p>
+
+				<button class="btn btn-info m-1 mb-4 py-1" id="btn_qsj_lancer">Lancer une partie</button>
+
+				<div class="mb-3" id="qsj_body"></div>
+				<div id="qsj_answer">
+					<div class="d-flex flex-row">
+						<input class="form-control mr-sm-2" type="search" placeholder="Soumettre un concept" id="text_qsj_answer">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btn_qsj_answer">Soumettre</button>
+					</div>
+				</div>
+				<div id="qsj_2"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="faits.js"></script>
+	<script src="consultation.js"></script>
+	<script src="ouinon.js"></script>
+	<script src="consigne.js"></script>
+	<script src="quisuisje.js"></script>
+	<script src="autres.js"></script>
+</body>
+
+</html>

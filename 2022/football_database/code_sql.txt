@@ -1,0 +1,558 @@
+--Q.4
+
+DROP TABLE IF EXISTS CoupeDeMonde CASCADE;
+DROP TABLE IF EXISTS Equipe CASCADE;
+DROP TABLE IF EXISTS Joueur CASCADE;
+DROP TABLE IF EXISTS Staff CASCADE;
+DROP TABLE IF EXISTS Niveau CASCADE;
+DROP TABLE IF EXISTS Score1 CASCADE;
+DROP TABLE IF EXISTS Score2 CASCADE;
+DROP TABLE IF EXISTS InfosMatch CASCADE;
+DROP TABLE IF EXISTS Arbitre CASCADE;
+DROP TABLE IF EXISTS ArbitreAssistant CASCADE;
+DROP TABLE IF EXISTS Sanction CASCADE;
+DROP TABLE IF EXISTS Participation CASCADE;
+DROP TABLE IF EXISTS PaysJoueur CASCADE;
+DROP TABLE IF EXISTS AnneesJoueur CASCADE;
+DROP TABLE IF EXISTS PaysStaff CASCADE;
+DROP TABLE IF EXISTS AnneesStaff CASCADE;
+
+CREATE TABLE CoupeDeMonde (
+	edition int PRIMARY KEY,
+	UNIQUE (edition) 
+);
+
+INSERT INTO CoupeDeMonde
+VALUES 
+ (1),
+ (2),
+ (3),
+ (4),
+ (5),
+ (6),
+ (7),
+ (8),
+ (9),
+ (10),
+ (11),
+ (12),
+ (13),
+ (14),
+ (15);
+ 
+--SELECT * from CoupeDeMonde
+
+CREATE Table Joueur (
+	joueur_numero int,
+	prenom varchar,
+	nom varchar,
+	position varchar,
+	numero_chandail int,
+	primary KEY (joueur_numero)
+);
+insert into Joueur 
+values
+	(1,'James','Smith', 'Gardien', 15),
+	(2,'Robert','Johnson', 'Defenseur Droit', 16),
+	(3,'John','Williams', 'Defenseur Gauche', 17),
+	(4, 'Michael', 'Brown', 'Gardien', 18),
+	(5,'William','Jones', 'Defenseur Droit', 19),
+	(6,'David','Garcia', 'Defenseur Gauche', 20),
+	(7,'Richard','Miller', 'Gardien', 21),
+	(8,'Joseph','Davis', 'Defenseur Droit', 22),
+	(9,'Thomas','Rodriguez', 'Defenseur Gauche', 23),
+	(10,'Gabriel','Lebeau', 'Offensive', 14),
+	(11, 'Jerry', 'Boulet', 'Offensive', 1);
+
+--SELECT * from Joueur
+
+	
+ 
+Create table Staff(
+	staff_numero int,
+	prenom varchar,
+	nom varchar,
+	fonction varchar,
+	primary key (staff_numero)
+);
+
+INSERT INTO Staff
+VALUES 
+ (1,'James','Smith','Entraineur'),
+ (6,'David','Garcia','Entraineur'),
+ (10,'Chris','Hernandez','Entraineur'),
+ (2, 'Deng', 'Liu', 'Entraineur'),
+ (3, 'Sone', 'Kazuki', 'Entraineur'),
+ (4, 'Rupert', 'Weber', 'Entraineur'),
+ (5, 'Sasha', 'Belov', 'Entraineur'),
+ (7, 'Roman', 'Butenko', 'Entraineur'),
+ (9, 'Martin', 'Randa', 'Entraineur'),
+
+ (8,'Joseph','Davis','Porteur DEau'),
+ (11,'Daniel','Lopez','Porteur DEquipement'),
+ (12,'Matt','Gonzalez','Porteur DEau'),
+ (13,'Tony','Wilson','Docteur'),
+ (14,'Mark','Anderson','Administrateur'),
+ (15,'Thomas','Rodriguez','Docteur'),
+ (16,'Robert','Johnson','Porteur DEquipement'),
+ (17,'John','Williams','Porteur DEau'),
+ (18,'Michael','Brown','Docteur'),
+ (19,'Aaron','Jones','Administrateur'),
+ (20,'Richard','Miller','Porteur DEquipement'),
+ (21,'Charles','Martinez','Administrateur');
+
+--Select * from Staff
+
+Create table Arbitre(
+	arbitre_numero int,
+	prenom varchar,
+	nom varchar,
+	primary key(arbitre_numero),
+	UNIQUE(arbitre_numero)
+);
+
+insert into Arbitre
+values
+	(1,'Simon','Tremblay'),
+	(2,'Maxence','Gagnon'),
+	(3,'Maxime','Roy'),
+	(4,'Camille','Bouchard'),
+	(5,'Ben','Son'),
+	(6,'Oscar','Nurzhan'),
+	(7,'Nicanor','Eugen'),
+	(8,'Sung-Soo','Miguel'),
+	(9,'Blago','Uthy'),
+	(10,'Martyn','Paol'),
+	(11,'Munir','Edvaldo');
+	
+--select * from Arbitre
+
+create table Equipe (
+	edition int,
+	pays varchar,
+	entraineur_numero int,
+	primary key(edition,pays),
+	
+	foreign key(edition) references CoupeDeMonde(edition),
+	UNIQUE(edition, pays),
+	foreign key(entraineur_numero) references Staff(staff_numero)
+);
+
+Insert into Equipe
+Values
+	(1,'Canada',1),
+	(1,'Chine',2),
+	(1,'Japon',3),
+	(1, 'USA', 6),
+	(2,'Allemagne',4),
+	(2,'Russie',5),
+	(2,'USA',6),
+	(2,'France',10),
+	(3,'Ukraine',7),
+	(3,'France',10),
+	(3,'Roumanie',9),
+	(3,'Canada',1),
+	(4,'Canada',1),
+	(4,'Chine',2);
+	
+--select * from Equipe
+
+Create table InfosMatch(
+	edition int,
+	pays1 varchar,
+	pays2 varchar,
+	date Date,
+	lieu varchar,
+	arbitre_principal_numero int,
+	primary key(edition,pays1,pays2,date),
+	foreign key(arbitre_principal_numero) references Arbitre(arbitre_numero),
+	foreign key(edition, pays1) references Equipe(edition, pays),
+	foreign key(edition, pays2) references Equipe(edition, pays),
+	foreign key(edition) references CoupeDeMonde(edition),
+	UNIQUE(edition, pays1, date),
+	UNIQUE(edition, pays2, date)
+
+);
+
+
+Insert into InfosMatch
+Values
+ (1,'Canada','USA','2008-11-11','Allemagne',1),
+ (1,'Canada','USA','2008-11-09','Portugal',2),
+ (1,'Canada','USA','2008-11-13','Allemagne',2),
+ (1,'Canada','USA','2008-11-29','Russie',1),
+ (2,'France','USA','2009-11-11','Chine',3),
+ (2,'France','USA','2009-11-09','Russie',3),
+ (2,'France','USA','2009-11-13','Portugal',4),
+ (2,'France','USA','2009-11-29','Japon',3),
+ (3,'Canada','France','2019-11-11','Chine',2),
+ (3,'Canada','France','2019-11-09','Russie',1),
+ (3,'Canada','France','2019-11-13','Allemagne',1),
+ (3,'Canada','France','2019-11-29','Japon',4);
+ 
+--select * from InfosMatch
+
+Create table Niveau(
+	date Date,
+	rang varchar,
+	primary key(date)
+);
+
+INSERT INTO Niveau
+VALUES 
+ ('2008-11-11','Qualification'),
+ ('2008-11-09','Quart-de-finale'),
+ ('2008-11-13','Demi-finale'),
+ ('2008-11-29','Finale'),
+ ('2009-11-11','Qualification'),
+ ('2009-11-09','Quart-de-finale'),
+ ('2009-11-13','Demi-finale'),
+ ('2009-11-29','Finale'),
+ ('2019-11-11','Qualification'),
+ ('2019-11-09','Quart-de-finale'),
+ ('2019-11-13','Demi-finale'),
+ ('2019-11-29','Finale');
+ 
+--select * from Niveau 
+
+Create table Score1 (
+	edition int,
+	date Date,
+	pays1 varchar,
+	pays1_score_final int,
+	primary key(edition,date,pays1),
+	foreign key(edition, date, pays1) references InfosMatch(edition, date, pays1)
+);
+
+Insert into Score1
+Values
+ (1,'2008-11-11','Canada',3),
+ (1,'2008-11-09','Canada',2),
+ (1,'2008-11-13','Canada',3),
+ (1,'2008-11-29','Canada',1),
+ (2,'2009-11-11','France',0),
+ (2,'2009-11-09','France',2),
+ (2,'2009-11-13','France',3),
+ (2,'2009-11-29','France',2),
+ (3,'2019-11-11','Canada',1),
+ (3,'2019-11-09','Canada',0),
+ (3,'2019-11-13','Canada',2),
+ (3,'2019-11-29','Canada',3);
+
+--select * from Score1
+
+Create table Score2 (
+	edition int,
+	date Date,
+	pays2 varchar,
+	pays2_score_final int,
+	primary key(edition,date,pays2),
+	foreign key(edition, date, pays2) references InfosMatch(edition, date, pays2)
+);
+
+
+Insert into Score2
+Values
+ (1,'2008-11-11','USA',2),
+ (1,'2008-11-09','USA',2),
+ (1,'2008-11-13','USA',0),
+ (1,'2008-11-29','USA',1),
+ (2,'2009-11-11','USA',0),
+ (2,'2009-11-09','USA',2),
+ (2,'2009-11-13','USA',1),
+ (2,'2009-11-29','USA',2),
+ (3,'2019-11-11','France',1),
+ (3,'2019-11-09','France',2),
+ (3,'2019-11-13','France',2),
+ (3,'2019-11-29','France',0);
+ 
+--select * from Score2
+
+
+
+
+
+Create table ArbitreAssistant(
+	arbitre_numero int,
+	pays1 varchar,
+	pays2 varchar,
+	edition int,
+	date Date,
+	primary key (arbitre_numero,pays1,pays2,edition,date),
+	foreign key(pays1, pays2, edition, date) references InfosMatch(pays1, pays2, edition, date),
+	foreign key(arbitre_numero) references Arbitre(arbitre_numero)
+);
+
+Insert into ArbitreAssistant
+Values
+ (5,'Canada','USA',1,'2008-11-11'),
+ (6,'Canada','USA',1,'2008-11-11'),
+ (7,'Canada','USA',1,'2008-11-11'),
+ (5,'Canada','USA',1,'2008-11-09'),
+ (6,'Canada','USA',1,'2008-11-09'),
+ (7,'Canada','USA',1,'2008-11-09'),
+ (3,'Canada','USA',1,'2008-11-13'),
+ (5,'Canada','USA',1,'2008-11-13'),
+ (7,'Canada','USA',1,'2008-11-13'),
+ (2,'Canada','USA',1,'2008-11-29'),
+ (5,'Canada','USA',1,'2008-11-29'),
+ (7,'Canada','USA',1,'2008-11-29'),
+ (4,'France','USA',2,'2009-11-11'),
+ (8,'France','USA',2,'2009-11-11'),
+ (9,'France','USA',2,'2009-11-11'),
+ (1,'France','USA',2,'2009-11-09'),
+ (8,'France','USA',2,'2009-11-09'),
+ (9,'France','USA',2,'2009-11-09'),
+ (2,'France','USA',2,'2009-11-13'),
+ (8,'France','USA',2,'2009-11-13'),
+ (9,'France','USA',2,'2009-11-13'),
+ (2,'France','USA',2,'2009-11-29'),
+ (8,'France','USA',2,'2009-11-29'),
+ (9,'France','USA',2,'2009-11-29'),
+ (4,'Canada','France',3,'2019-11-11'),
+ (10,'Canada','France',3,'2019-11-11'),
+ (11,'Canada','France',3,'2019-11-11'),
+ (3,'Canada','France',3,'2019-11-09'),
+ (10,'Canada','France',3,'2019-11-09'),
+ (11,'Canada','France',3,'2019-11-09'),
+ (2,'Canada','France',3,'2019-11-13'),
+ (10,'Canada','France',3,'2019-11-13'),
+ (11,'Canada','France',3,'2019-11-13'),
+ (1,'Canada','France',3,'2019-11-29'),
+ (10,'Canada','France',3,'2019-11-29'),
+ (11,'Canada','France',3,'2019-11-29');
+ 
+--select * from ArbitreAssistant
+ 
+
+
+
+create table Sanction(
+	edition int,
+	pays1 varchar,
+	pays2 varchar,
+	joueur_numero int,
+	arbitre_numero int,
+	date Date,
+	heure time,
+	couleur varchar,
+	primary key(edition,pays1, pays2, joueur_numero,arbitre_numero,date,heure),
+	foreign key(edition, pays1, pays2, date) references InfosMatch(edition, pays1, pays2, date),
+	foreign key(joueur_numero) references Joueur(joueur_numero),
+	foreign key(arbitre_numero) references Arbitre(arbitre_numero)
+);
+
+insert into Sanction
+values
+	(1,'Canada', 'USA', 1,1,'2008-11-11','09:00:00.0000000','jaune'),
+	(1,'Canada', 'USA', 1,2,'2008-11-09','11:00:00.0000000','rouge'),
+	(1,'Canada', 'USA', 1,2,'2008-11-13','13:00:00.0000000','jaune'),
+	(1,'Canada', 'USA', 1,1,'2008-11-29','09:00:00.0000000','jaune'),
+	(2,'France','USA', 6,2,'2009-11-11','11:00:00.0000000','rouge'),
+	(2,'France','USA',6,2,'2009-11-09','13:00:00.0000000','jaune'),
+	(2,'France','USA',6,1,'2009-11-13','09:00:00.0000000','jaune'),
+	(2,'France','USA',6,2,'2009-11-29','11:00:00.0000000','rouge'),
+	(3,'Canada', 'France',1,2,'2019-11-11','13:00:00.0000000','jaune'),
+	(3,'Canada', 'France',1,1,'2019-11-09','09:00:00.0000000','jaune'),
+	(3,'Canada', 'France', 10,2,'2019-11-13','11:00:00.0000000','rouge'),
+	(3,'Canada', 'France', 10,2,'2019-11-29','13:00:00.0000000','jaune');
+
+--select * from Sanction
+
+
+create table Participation(
+	edition int,
+	date Date,
+	pays1 varchar,
+	pays2 varchar,
+	joueur_numero int,
+	nb_passes int,
+	nb_buts int,
+	nb_tirs int ,
+	nb_assistances int,
+	primary key(edition,date,pays1,pays2,joueur_numero),
+	foreign key(edition, date, pays1, pays2) references InfosMatch(edition, date, pays1, pays2)
+);
+
+insert into Participation
+values
+	(1,'2008-11-11','Canada','USA',6,2,1,3,2),
+	(1,'2008-11-09','Canada','USA',8,2,2,1,3),
+	(1,'2008-11-13','Canada','USA',1,1,3,2,1),
+	(1,'2008-11-29','Canada','USA',1,2,2,3,3),
+	(2,'2009-11-11','France','USA',6,2,1,3,2),
+	(2,'2009-11-09','France','USA',10,2,2,1,3),
+	(2,'2009-11-13','France','USA',10,1,3,2,1),
+	(2,'2009-11-29','France','USA',11,2,2,3,3),
+	(3,'2019-11-11','Canada','France',5,2,1,3,2),
+	(3,'2019-11-09','Canada','France',10,2,2,1,3),
+	(3,'2019-11-13','Canada','France',1,1,3,2,1),
+	(3,'2019-11-29','Canada','France',1,2,2,3,3);
+
+--select * from Participation 
+
+
+CREATE TABLE PaysJoueur (
+	joueur_numero int PRIMARY KEY,
+	pays varchar,
+	foreign key(joueur_numero) references Joueur(joueur_numero)
+	
+);
+
+CREATE TABLE AnneesJoueur (
+	edition int,
+	joueur_numero int,
+	primary key(edition, joueur_numero),
+	foreign key(edition) references CoupeDeMonde(edition),
+	foreign key(joueur_numero) references Joueur(joueur_numero)
+	
+);
+
+CREATE TABLE PaysStaff (
+	staff_numero int PRIMARY KEY,
+	pays varchar,
+	foreign key(staff_numero) references Staff(staff_numero)
+
+);
+
+CREATE TABLE AnneesStaff (
+	edition int,
+	staff_numero int,
+	primary key(edition, staff_numero),
+	foreign key(edition) references CoupeDeMonde(edition),
+	foreign key(staff_numero) references Staff(staff_numero)
+	
+);
+
+INSERT INTO AnneesJoueur
+VALUES 
+ (1, 1),
+ (1, 3),
+ (1, 5),
+ (1, 2),
+ (1, 6),
+ (1, 4),
+ (1, 7),
+ (1, 8),
+ (2, 6),
+ (2, 4),
+ (2, 7),
+ (2, 8),
+ (2, 10),
+ (2, 9),
+ (2, 11),
+ (3, 1),
+ (3, 3),
+ (3, 5),
+ (3,10),
+ (3,9),
+ (3,11);
+
+INSERT INTO PaysJoueur
+VALUES 
+ (1, 'Canada'),
+ (6, 'USA'),
+ (2, 'Chine'),
+ (10, 'France'),
+ (3, 'Canada'),
+ (5, 'Canada'),
+ (4, 'USA'),
+ (7, 'USA'),
+ (8, 'USA'),
+ (9, 'France'),
+ (11, 'France');
+
+
+INSERT INTO AnneesStaff
+VALUES 
+ (1, 1),
+ (1, 2),
+ (1,3),
+ (2,4),
+ (2,5),
+ (2,6),
+ (2,10),
+ (2,11),
+ (2,13),
+ (2,14),
+ (3,7),
+ (3,10),
+ (3,9),
+ (3,11),
+ (3,13),
+ (3,14),
+ (4,1),
+ (4,6),
+ (4,2),
+ (4,15),
+ (4,9);
+
+INSERT INTO PaysStaff
+VALUES 
+ (1, 'Canada'),
+ (2, 'Chine'),
+ (3,'Japon'),
+ (4,'Allemagne'),
+ (5,'Russie'),
+ (6, 'USA'),
+ (7, 'Ukraine'),
+ (8, 'USA'),
+ (15, 'USA'),
+ (9, 'Roumanie'),
+ (10, 'France'),
+ (11, 'France'),
+ (12, 'France'),
+ (13, 'France'),
+ (14, 'France');
+
+--QUESTION 5.1
+DROP TABLE IF EXISTS t1 CASCADE;
+DROP TABLE IF EXISTS t2 CASCADE;
+DROP TABLE IF EXISTS t3 CASCADE;
+DROP TABLE IF EXISTS t4 CASCADE;
+DROP TABLE IF EXISTS t5 CASCADE;
+DROP TABLE IF EXISTS t6 CASCADE;
+DROP TABLE IF EXISTS t7 CASCADE;
+DROP TABLE IF EXISTS t8 CASCADE;
+CREATE TABLE t1 as (SELECT edition, pays1, pays2, date from InfosMatch where (edition = 1));
+CREATE TABLE t2 as (SELECT date from Niveau where rang='Finale');
+CREATE TABLE t3 as (SELECT * from t1 natural join t2);
+CREATE TABLE t4 as (Select edition, date, pays1 from t3);
+CREATE TABLE t5 as (Select edition, date, pays2 from t3);
+CREATE TABLE t6 as (SELECT * from Score1 natural join t4);
+CREATE TABLE t7 as (SELECT * from Score2 natural join t5);
+CREATE TABLE t8 as (Select pays1_score_final as score, pays1 as pays from t6) UNION (Select pays2_score_final as score, pays2 as pays from t7);
+
+--QUESTION 5.2
+DROP TABLE IF EXISTS a1 CASCADE;
+DROP TABLE IF EXISTS a2 CASCADE;
+DROP TABLE IF EXISTS a3 CASCADE;
+DROP TABLE IF EXISTS a4 CASCADE;
+DROP TABLE IF EXISTS a5 CASCADE;
+DROP TABLE IF EXISTS a6 CASCADE;
+DROP TABLE IF EXISTS a7 CASCADE;
+DROP TABLE IF EXISTS a8 CASCADE;
+CREATE TABLE a1 as (SELECT joueur_numero, prenom, nom FROM Joueur WHERE position='Gardien');
+CREATE TABLE a2 as (SELECT joueur_numero, pays FROM PaysJoueur);
+CREATE TABLE a3 as (SELECT joueur_numero, edition FROM anneesJoueur);
+CREATE TABLE a4 as (SELECT joueur_numero, nb_buts, pays1 as pays FROM Participation);
+CREATE TABLE a5 as (SELECT * FROM a1 inner join a2 using(joueur_numero));
+CREATE TABLE a6 as (SELECT * FROM a5 inner join a3 using(joueur_numero));
+CREATE TABLE a7 as (SELECT prenom, nom, nb_buts FROM a6 inner join a4 on (a6.joueur_numero = a4.joueur_numero AND a6.pays=a4.pays));
+CREATE TABLE a8 as (SELECT max(nb_buts) as res FROM a7);
+
+--QUESTION 5.3
+DROP TABLE IF EXISTS r1 CASCADE;
+DROP TABLE IF EXISTS r2 CASCADE;
+DROP TABLE IF EXISTS r3 CASCADE;
+CREATE TABLE r1 AS (SELECT joueur_numero, prenom, nom FROM Joueur);
+CREATE TABLE r2 AS (SELECT joueur_numero,nb_passes FROM Participation);
+CREATE TABLE r3 AS (SELECT * from r1 Natural JOIN r2);
+
+--QUESTION 5.4
+DROP TABLE IF EXISTS b1 CASCADE;
+DROP TABLE IF EXISTS b2 CASCADE;
+DROP TABLE IF EXISTS b3 CASCADE;
+CREATE TABLE b1 as (SELECT * from Sanction where (joueur_numero =(Select joueur_numero from Joueur where (prenom = 'David' AND nom = 'Garcia'))));
+CREATE TABLE b2 as (SELECT arbitre_numero, COUNT(*) AS nbSanctions from b1 group by arbitre_numero);
+CREATE TABLE b3 as (SELECT arbitre_numero from b2 where (nbSanctions = (Select MAX(nbSanctions) from b2)));
