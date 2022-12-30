@@ -1,0 +1,20 @@
+package main;
+
+public enum FType {
+	//Voyages
+	VOYAGE_VOL,
+	VOYAGE_ITINERAIRE,
+	VOYAGE_TRAJET,
+	
+	//Stations
+	STATION_AEROPORT,
+	STATION_PORT,
+	STATION_GARE,
+	
+	//Compagnies
+	COMPAGNIE_AERIENNE,
+	COMPAGNIE_CROISIERE,
+	COMPAGNIE_FERROVIAIRE
+	
+
+}
