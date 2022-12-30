@@ -401,9 +401,9 @@
     </h2>
     </br>
     <p>
-        <a href="artifact2/분석/DiagrammeClasses.vpp">Fichier .vpp 다이어그램</a> </br>
+        <a href="portfolio/artifact2/분석/DiagrammeClasses.vpp">Fichier .vpp 다이어그램</a> </br>
     <h3>이미지:</h3>
-    <img src="artifact2/분석/DiagrammeClasses.PNG" width=100% alt="DiagrammeClasses">
+    <img src="portfolio/artifact2/분석/DiagrammeClasses.PNG" width=100% alt="DiagrammeClasses">
     </p>
     </br>
     </br>
@@ -413,21 +413,24 @@
     </h2>
     </br>
     <p>
-        <a href="artifact2/설계/DiagrammeSequences.vpp">Fichier .vpp 다이어그램</a> </br>
+        <a href="portfolio/artifact2/설계/DiagrammeSequences.vpp">Fichier .vpp 다이어그램</a> </br>
     <h3>회원의 생성, 수정, 삭제하기:</h3>
-    <img src="artifact2/설계/Membre.PNG" width=100%
+    <img src="portfolio/artifact2/설계/Membre.PNG" width=100%
         alt="Diagramme de séquences ajouter/mettre à jour/supprimer un membre"></br></br>
     <h3>서비스 생성, 수정, 삭제하기:</h3>
-    <img src="artifact2/설계/Service.PNG" width=100%
+    <img src="portfolio/artifact2/설계/Service.PNG" width=100%
         alt="Diagramme de séquences ajouter/mettre à jour/supprimer un service"></br></br>
     <h3>세션에 출석체크하기 :</h3>
-    <img src="artifact2/설계/ConfirmSeance.PNG" width=100%
+    <img src="portfolio/artifact2/설계/ConfirmSeance.PNG" width=100%
         alt="Diagramme de séquences confirmer présence à une séance"></br></br>
     <h3>세션에 등록하기:</h3>
-    <img src="artifact2/설계/Inscription.PNG" width=100% alt="Diagramme de séquences inscription à une séance"></br></br>
+    <img src="portfolio/artifact2/설계/Inscription.PNG" width=100%
+        alt="Diagramme de séquences inscription à une séance"></br></br>
     <h3>회계 절차 수행하기:</h3>
-    <img src="artifact2/설계/Comptable1.PNG" width=100% alt="Diagramme de séquences procédure comptable 1"></br></br>
-    <img src="artifact2/설계/Comptable2.PNG" width=100% alt="Diagramme de séquences procédure comptable 2"></br></br>
+    <img src="portfolio/artifact2/설계/Comptable1.PNG" width=100%
+        alt="Diagramme de séquences procédure comptable 1"></br></br>
+    <img src="portfolio/artifact2/설계/Comptable2.PNG" width=100%
+        alt="Diagramme de séquences procédure comptable 2"></br></br>
     </p>
     <h2>
         작업 4 : 프로토타입 작성
@@ -435,7 +438,7 @@
     </br>
     <p>
     <h3>Fichier executable .jar:</h3>
-    <a href="artifact2/Implementation/GYM.jar">Gym.jar</a> </br>
+    <a href="portfolio/artifact2/Implementation/GYM.jar">Gym.jar</a> </br>
     </p>
     </br>
     </br>
