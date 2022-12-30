@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* Auteurs : Thi Hang Vo, Christian Lungescu, Changmin Lee- */
+
+/* Second style de tableaux */
+
+main {
+    height: 2350px;
+}
+
+table {
+    background-color: #FF6666;
+    float: left;
+}
+
+tr:nth-child(odd) {
+    background-color: #7A9CFF;
+}
+
+th,td {
+    padding: 4px 1px;
+}
+
+.table2 {   
+    position: relative;
+    top: 100px;
+}

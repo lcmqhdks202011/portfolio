@@ -1,0 +1,120 @@
+<!--Auteurs : Thi Hang Vo, Christian Lungescu, Changmin Lee-->
+
+<!doctype html>
+<html lang="fr-ca">
+
+<head>
+  <meta charset="utf-8">
+  <title>Expos de Montréal - Classement des équipes</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css"
+    href="style_comp_class_auteurs.css">
+  <script src="jquery-3.4.1.js"></script>
+  <script src="classement.js"></script>
+</head>
+
+<body id="by" onload="init();">
+
+  <header>
+    <h1>Expos de Montréal</h1>
+  </header>
+  <nav>
+    <a href="accueil.html">Accueil</a>
+    <a href="composition.html">Composition des équipes</a>
+    <a href="classement.html">Classement des équipes</a>
+    <a href="evolution.html">Évolution de l'équipe</a>
+    <a href="auteurs.html">Auteurs</a>
+  </nav>
+
+  <main>
+    <h2>Classement des équipes</h2>
+    <div class="divinterface"
+      style="height: 191px; width: 417px; float: left;">
+      <label>Sélectionner l'année
+        <select name="annee" id="anneeSel" onchange="blocker1994();">
+        </select>
+      </label><br>
+
+      <label style="position:relative; top: 5px;">Sélectionner la
+        ligue
+        <select id="ligueSel" >
+          <option value="AL">Américaine & Nationale</option>
+          <option value="NL">Nationale</option>
+        </select>
+      </label> <br><br>
+
+      <fieldset style="width: 380px;">
+        <legend>Champion</legend>
+        <label>
+          Voir les champions de chacune des deux ligues
+          <input type="checkbox" id="champs2ligue"
+            style="float: right;" checked>
+        </label><br>
+        <label>
+          Voir le champion de la série mondiale
+          <input type="checkbox" id="champSM" style="float: right;"
+            checked>
+        </label>
+      </fieldset>
+
+      <fieldset id="fieldappliquerclassement">
+
+        <button id="lance">Afficher</button>
+      </fieldset>
+    </div>
+    <div class="divinterface" 
+         style="height: 191px; width: 200px; float: left;"
+         id="championlegend">
+
+      <fieldset style="padding-left:  40px; width: 150px; height: 150px;">
+        <legend>Legend</legend>
+        <div style="height: 30px;background-color: yellow;">Champion
+          National
+        </div>
+        <div style="height: 30px;background-color: lime;">Champion
+          Américain
+        </div>
+        <div style="height: 30px;border: 5px solid purple;">Champion
+          Mondial
+        </div>
+      </fieldset>
+    </div>
+    <br><br>
+    <div id="table1Title"
+      style="margin-left: 40%; font-size:xx-large;float: left;"></div>
+    <table id="tableA" style="padding-top: 60px;"></table>
+    <br><br>
+    <div id="table2Title"
+      style="margin-left: 40%; font-size: xx-large;float: left;">
+    </div>
+    <table id="tableB" style="padding-top: 60px;"></table>
+    <br><br>
+    <div id="table3Title"
+      style="margin-left: 38%; font-size: xx-large;float: left;">
+    </div>
+    <table id="tableC" style="padding-top: 60px;"></table>
+
+  </main>
+  <footer>
+    <div>
+      <ul class="listunstyled">
+        <li><a class="link" href="accueil.html">Accueil</a></li>
+        <li><a class="link" href="composition.html">Composition
+            des équipes</a></li>
+        <li><a class="link" href="classement.html">Classement des
+            équipes</a></li>
+        <li><a class="link" href="evolution.html">Évolution de
+            l'équipe</a></li>
+        <li><a class="link" href="auteurs.html">Auteurs</a></li>
+      </ul>
+    </div>
+    <div class="about">
+      <h3>À propos</h3>
+      <p>Ce site est consacré aux Expos de Montréal et à leurs
+        statistiques au cours des années 1969-2004.</p>
+    </div>
+    <div class="copycenter">© 2020 Copyright:TVCLCL</div>
+  </footer>
+</body>
+
+</html>

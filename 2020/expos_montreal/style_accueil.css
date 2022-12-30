@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* Auteurs : Thi Hang Vo, Christian Lungescu, Changmin Lee- */
+
+main::after {
+    /* Évite que la classe "table2" sorte du main lorsqu'en
+       "position: relative" et déplacée avec "top".
+       Source : https://www.w3schools.com/css/css_float.asp */
+    content: "";
+    clear: both;
+    display: table;
+}
+
+article {
+    background-color: white;
+    text-align: justify;
+    line-height: 25px;
+    margin-right: 52%;
+    margin-left: 2.5%;
+    padding: 20px;
+    border: 2px solid blue;
+    border-radius: 5px;
+}
+
+#article2 {
+    position: relative;
+    top: 100px;
+    margin-top: 40px;
+    margin-right: 6.5%;
+    margin-left: 52%;
+    margin-bottom: 50px;
+}
+
+.img1 {
+    position: absolute;
+    top: 470px;
+    left: 55%;
+    bottom: -9%;
+    width: 35%;
+    border-radius: 25px;
+  
+}
+
+.img2 {
+    position: absolute;
+    top: 975px;
+    right: 53.5%;
+    bottom: -600px;
+    width: 40%;
+    border-radius: 30px;
+}

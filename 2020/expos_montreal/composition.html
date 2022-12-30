@@ -1,0 +1,285 @@
+<!--Auteurs : Thi Hang Vo, Christian Lungescu, Changmin Lee-->
+
+<!doctype html>
+<html lang="fr-ca">
+
+<head>
+  <meta charset="utf-8">
+  <title>Expos de Montréal - Composition des équipes</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style_comp_class_auteurs.css">
+  <script src="jquery-3.4.1.js"></script>
+  <script src="composition.js"></script>
+</head>
+
+<body onload="init();">
+  <header>
+    <h1>Expos de Montréal</h1>
+  </header>
+  <nav>
+    <a href="accueil.html">Accueil</a>
+    <a href="composition.html">Composition des équipes</a>
+    <a href="classement.html">Classement des équipes</a>
+    <a href="evolution.html">Évolution de l'équipe</a>
+    <a href="auteurs.html">Auteurs</a>
+  </nav>
+  <main>
+    <h2>Composition des équipes</h2>
+    <div class="divinterface" style="height: 30px; width: 900px;">
+      <label>Selectionner l'année
+        <select id="annee" onchange=disableSalaire()>
+          <option>2004</option>
+          <option>2003</option>
+          <option>2002</option>
+          <option>2001</option>
+          <option>2000</option>
+          <option>1999</option>
+          <option>1998</option>
+          <option>1997</option>
+          <option>1996</option>
+          <option>1995</option>
+          <option>1994</option>
+          <option>1993</option>
+          <option>1992</option>
+          <option>1991</option>
+          <option>1990</option>
+          <option>1989</option>
+          <option>1988</option>
+          <option>1987</option>
+          <option>1986</option>
+          <option>1985</option>
+          <option>1984</option>
+          <option>1983</option>
+          <option>1982</option>
+          <option>1981</option>
+          <option>1980</option>
+          <option>1979</option>
+          <option>1978</option>
+          <option>1977</option>
+          <option>1976</option>
+          <option>1975</option>
+          <option>1974</option>
+          <option>1973</option>
+          <option>1972</option>
+          <option>1971</option>
+          <option>1970</option>
+          <option>1969</option>
+        </select>
+      </label><br>
+    </div>
+    <div class="divinterface" style="height: 156px; 
+                                    width: 900px; 
+                                    padding-bottom: 50px;">
+      <span style="font-size: 20pt;">Joueurs</span>
+      <fieldset id="fieldoffensive">
+        <legend>Offensive</legend>
+        <div style="width: 130px; float: left; position: absolute;
+                    left: 10px;">
+          BA%
+          <input type="checkbox" name="offensive" id="BA"
+            class="checkboxcomposition" checked>
+          <br> SL%
+          <input type="checkbox" name="offensive" id="sL"
+            class="checkboxcomposition" checked>
+          <br> OB%
+          <input type="checkbox" name="offensive" id="OB"
+            class="checkboxcomposition" checked>
+          <br> SO%
+          <input type="checkbox" name="offensive" id="sO"
+            class="checkboxcomposition" checked>
+          <br> SB%
+          <input type="checkbox" name="offensive" id="sBp"
+            class="checkboxcomposition" checked>
+        </div>
+        <div style="width: 120px; float: left; position: absolute;
+                    left: 150px;">
+          AB
+          <input type="checkbox" name="offensive" id="AB"
+            class="checkboxcomposition" checked>
+          <br> H
+          <input type="checkbox" name="offensive" id="H"
+            class="checkboxcomposition" checked>
+          <br> 2B
+          <input type="checkbox" name="offensive" id="2B"
+            class="checkboxcomposition" checked>
+          <br> 3B
+          <input type="checkbox" name="offensive" id="3B"
+            class="checkboxcomposition" checked>
+        </div>
+        <div style="width: 120px; float: right;">
+          HR
+          <input type="checkbox" name="offensive" id="HR"
+            class="checkboxcomposition" checked>
+          <br> BB
+          <input type="checkbox" name="offensive" id="BB"
+            class="checkboxcomposition" checked>
+          <br> R
+          <input type="checkbox" name="offensive" id="R"
+            class="checkboxcomposition" checked>
+          <br> SB
+          <input type="checkbox" name="offensive" id="sB"
+            class="checkboxcomposition" checked>
+          <br> CS
+          <input type="checkbox" name="offensive" id="CS"
+            class="checkboxcomposition" checked>
+        </div>
+      </fieldset>
+      <fieldset id="fielddefensive">
+        <legend>Défensive</legend>
+        <div style="width: 100px;">
+          FP%
+          <input type="checkbox" name="defensive" id="FP"
+            class="checkboxcompositiondefensive" checked>
+          <br> POS
+          <input type="checkbox" name="defensive" id="POS"
+            class="checkboxcompositiondefensive" checked>
+          <br> A
+          <input type="checkbox" name="defensive" id="A"
+            class="checkboxcompositiondefensive" checked>
+          <br> E
+          <input type="checkbox" name="defensive" id="E"
+            class="checkboxcompositiondefensive" checked>
+          <br> Salaire
+          <input type="checkbox" name="defensive" id="salaire"
+            class="checkboxcompositiondefensive" checked>
+        </div>
+      </fieldset>
+      <fieldset id="fieldtrier">
+        <legend>Trier</legend>
+        <input type="radio" name="tri" id="tri_BA" checked> BA%<br>
+        <input type="radio" name="tri" id="tri_SL"> SL%<br>
+        <input type="radio" name="tri" id="tri_OB"> OB%<br>
+        <input type="radio" name="tri" id="tri_FP"> FP%<br>
+        <input type="radio" name="tri" id="tri_HR"> HR%<br>
+        <input type="radio" name="tri" id="tri_salaire">
+        Salaire<br>
+
+      </fieldset>
+    </div>
+
+
+    <div class="divinterface" style="height: 157px; 
+                                    width: 900px;
+                                    padding-bottom: 50px;">
+                                    
+      <span style="font-size: 20pt;">Lanceurs</span>
+      <fieldset id="fieldlanceurs" style="margin-top: 10px;">
+
+        <div style="width: 130px; float: left; position: absolute;
+                    left: 10px;">
+          ERA
+          <input type="checkbox" name="lanceur" id="ERA"
+            class="checkboxcomposition" checked>
+          <br> BAOpp
+          <input type="checkbox" name="lanceur" id="BAO"
+            class="checkboxcomposition" checked>
+          <br> Partant
+          <input type="checkbox" name="lanceur" id="Par"
+            class="checkboxcomposition" checked>
+          <br> G
+          <input type="checkbox" name="lanceur" id="G"
+            class="checkboxcomposition" checked>
+          <br> GS
+          <input type="checkbox" name="lanceur" id="GS"
+            class="checkboxcomposition" checked>
+        </div>
+        <div style="width: 120px; float: left; position: absolute;
+                    left: 150px;">
+          CG
+          <input type="checkbox" name="lanceur" id="CG"
+            class="checkboxcomposition" checked>
+          <br> W
+          <input type="checkbox" name="lanceur" id="W"
+            class="checkboxcomposition" checked>
+          <br> L
+          <input type="checkbox" name="lanceur" id="L"
+            class="checkboxcomposition" checked>
+          <br> SV
+          <input type="checkbox" name="lanceur" id="SV"
+            class="checkboxcomposition" checked>
+          <br> IPouts
+          <input type="checkbox" name="lanceur" id="IPo"
+            class="checkboxcomposition" checked>
+        </div>
+        <div style="width: 120px; float: right;">
+          SO
+          <input type="checkbox" name="lanceur" id="SO"
+            class="checkboxcomposition" checked>
+          <br> H
+          <input type="checkbox" name="lanceur" id="H2"
+            class="checkboxcomposition" checked>
+          <br> BB
+          <input type="checkbox" name="lanceur" id="BB2"
+            class="checkboxcomposition" checked>
+          <br> Salaire
+          <input type="checkbox" name="lanceur" id="Sa"
+            class="checkboxcomposition" checked>
+        </div>
+      </fieldset>
+      <fieldset id="fieldtrier2" style="float: left;
+                                        position: absolute;
+                                        left: 500px;">
+        <legend>Trier</legend>
+        <div style="float: left;">
+          <input type="radio" name="tri2" id="tri_ERA" checked> ERA<br>
+          <input type="radio" name="tri2" id="tri_BAOpp"> BAOpp<br>
+          <input type="radio" name="tri2" id="tri_G"> G<br>
+          <input type="radio" name="tri2" id="tri_GS"> GS<br>
+          <input type="radio" name="tri2" id="tri_CG"> CG<br>
+        </div>
+        <div style="float: left;">
+          <input type="radio" name="tri2" id="tri_W">W<br>
+          <input type="radio" name="tri2" id="tri_SO"> SO<br>
+          <input type="radio" name="tri2" id="tri_H"> H<br>
+          <input type="radio" name="tri2" id="tri_BB"> BB<br>
+          <input type="radio" name="tri2" id="tri_SA"> Salaire<br>
+        </div>
+
+      </fieldset>
+      <fieldset id="fieldappliquercomposition" style="float: left;">
+        <input type="radio" name="ordre1" id="desc1"> DESC<br>
+        <input type="radio" name="ordre1" id="asc1" checked> ASC<br>
+        <button id="bouton">Appliquer</button>
+      </fieldset>
+    </div>
+
+    <table class="table1" id="table1">
+
+    </table>
+    <br><br><br>
+
+    <table id="table2">
+
+    </table>
+    <span id="legPartant" style="margin-left: 50px;
+                                background-color: cyan;
+                                font-size: larger;"></span>
+
+    <table class="table2" id="table3">
+
+    </table>
+
+  </main>
+  <footer>
+    <div>
+      <ul class="listunstyled">
+        <li><a class="link" href="accueil.html">Accueil</a></li>
+        <li><a class="link" href="composition.html">Composition
+            des équipes</a></li>
+        <li><a class="link" href="classement.html">Classement des
+            équipes</a></li>
+        <li><a class="link" href="evolution.html">Évolution de
+            l'équipe</a></li>
+        <li><a class="link" href="auteurs.html">Auteurs</a></li>
+      </ul>
+    </div>
+    <div class="about">
+      <h3>À propos</h3>
+      <p>Ce site est consacré aux Expos de Montréal et à leurs
+        statistiques au cours des années 1969-2004.</p>
+    </div>
+    <div class="copycenter">© 2020 Copyright:TVCLCL</div>
+  </footer>
+</body>
+
+</html>

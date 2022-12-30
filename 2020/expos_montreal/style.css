@@ -1,0 +1,109 @@
+@charset "UTF-8";
+/* Auteurs : Thi Hang Vo, Christian Lungescu, Changmin Lee- */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: floralwhite;
+}
+
+h1{
+    text-shadow: 6px 6px black;
+    font-size: 4.375em;
+    font-family: "Rockwell",serif;
+    text-align: center; 
+}
+
+h2{
+    font-family: "Rockwell", serif;
+    font-size: 2.5em;
+    padding-left: 30px;
+}
+
+h3{
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+}
+
+header {
+    color: #4271FF;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-image: url(image/montreal-expos.jpg);
+    background-position: center;
+    background-size: 100% 200%;
+    border-bottom: 5px solid floralwhite;
+
+}
+
+nav {
+    font-size: 1.125em;
+    font-family: sans-serif, "Arial";
+    background-color: red;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 15px ;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: red;
+    color: white;
+}
+
+nav a:visited {
+    background-color: darkblue;
+    color: white;
+}
+
+table {
+    margin-left: 40px;
+    width: 90%;
+    color: black;
+}
+
+th,td {
+    text-align: center;
+}
+
+.captiontableau {
+    font-size: 1.5em;
+    color: black;
+    text-align: left;
+}
+
+footer{
+    padding: 10px;
+    background-color: white;
+    font-size: 0.75em;
+    margin-top: 90px;
+    color: #595959;
+}
+
+.listunstyled{
+    list-style-type: none;
+    line-height: 20px;
+}
+
+.copycenter{
+    text-align: center;
+    margin-top: -60px;
+}
+
+.about{
+    position: relative;
+    text-align: left;
+    padding-left: 35%;
+    margin-left: 20%;
+    bottom: 110px;
+}
+
+.link {
+    color: #595959;
+    text-decoration: none;
+    
+}
